@@ -9,6 +9,8 @@ An end-to-end data analytics project exploring e-commerce transactions to identi
 ![E-Commerce Sales Dashboard](images/ecommerce-dashboard.png)
 
 *Interactive dashboard built using Tableau Public.*
+
+*Interactive dashboard built using Tableau Public.*
 ## Project Overview
 
 This project analyzes the UCI Online Retail dataset, containing more than 500,000 transaction records from a UK-based online retailer.
