@@ -1,177 +1,178 @@
-# E-Commerce Sales Analysis
+# E-Commerce Sales Analysis | Python, SQL & Tableau
 
-An end-to-end data analytics portfolio project using **SQL, Python, and Power BI**. The project analyzes the UCI Online Retail transactional dataset to identify revenue trends, product performance, customer behavior, and geographic sales patterns.
+An end-to-end data analytics project exploring e-commerce transactions to identify sales trends, product performance, customer purchasing behavior, and geographic revenue patterns.
 
-## Business problem
+## 📊 Live Tableau Dashboard
 
-A UK-based online retailer wants to understand:
-- How revenue changes over time.
-- Which products and countries contribute most to revenue.
-- How many customers make repeat purchases.
-- Which months and days have the strongest sales.
-- How returns and cancelled invoices affect reported performance.
+**[View Interactive E-Commerce Sales Dashboard on Tableau Public](https://public.tableau.com/app/profile/pavan.kalyan.poloju/viz/E-CommerceSalesPerformanceDashboard_17939119335790/E-CommerceSalesDashboard)**
 
-## Tools
+## Project Overview
 
-- **Python:** pandas, NumPy, matplotlib, openpyxl
-- **SQL:** SQLite (portable; works locally without a database server)
-- **BI:** Microsoft Power BI Desktop
-- **Dataset:** UCI Machine Learning Repository — Online Retail
+This project analyzes the UCI Online Retail dataset, containing more than 500,000 transaction records from a UK-based online retailer.
+
+The objective is to transform raw transaction data into meaningful business insights through Python-based data cleaning, SQL analysis, and interactive Tableau visualizations.
+
+## Tools & Technologies
+
+- **Python:** Pandas, NumPy, Matplotlib
+- **SQL:** SQLite, aggregations, joins, subqueries, business analysis
+- **Tableau Public:** Interactive dashboards and data visualization
+- **Excel:** Source dataset inspection
+- **Git & GitHub:** Project version control and documentation
 
 ## Dataset
 
-Download the original `Online Retail.xlsx` file from the [UCI Online Retail dataset page](https://archive.ics.uci.edu/dataset/352/online+retail).
+- **Source:** [UCI Machine Learning Repository – Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)
+- **Original records:** 541,909
+- **Cleaned sales records:** 530,104
+- **Countries represented:** 38
 
-You can also run the included downloader:
+The dataset contains invoice numbers, product descriptions, quantities, invoice dates, unit prices, customer IDs, and countries.
 
-```bash
-python -m pip install -r requirements.txt
-python src/download_data.py
-```
+## Project Workflow
 
-The downloader retrieves the UCI dataset ZIP and extracts the workbook into `data/raw/`. If the UCI download URL changes, use the official dataset page and place `Online Retail.xlsx` in `data/raw/`.
+1. **Data Collection:** Downloaded the original Excel dataset.
+2. **Data Cleaning:** Used Python and Pandas to clean and standardize transaction data, handle invalid records, and calculate revenue.
+3. **Data Transformation:** Generated processed datasets for monthly sales, products, countries, customers, and KPIs.
+4. **Database Development:** Loaded cleaned transaction records into SQLite.
+5. **SQL Analysis:** Developed queries to evaluate revenue, orders, products, customers, and purchasing trends.
+6. **Visualization:** Built an interactive Tableau dashboard to communicate key findings.
 
-**Dataset notes:** The dataset contains transactions from 2010-12-01 through 2011-12-09. It includes invoice number, product, quantity, invoice date, unit price, customer ID, and country. Review the UCI page for citation and license details before redistributing the raw file. This repository intentionally does not commit the raw workbook.
+## Key Business Insights
 
-## Repository structure
+| Business Metric | Result |
+|---|---:|
+| Total Revenue | £10,666,684.54 |
+| Total Orders | 19,960 |
+| Known Customers | 4,338 |
+| Countries | 38 |
+| Average Order Value | £534.40 |
+| Units Sold | 5,588,376 |
+| Repeat Customer Rate | 65.58% |
+
+### Additional Findings
+
+- **Geographic performance:** The United Kingdom generated approximately £9.03 million in revenue, making it the dominant market.
+- **Monthly sales:** November 2011 was the highest-revenue month, generating approximately £1.51 million.
+- **Customer retention:** Approximately 65.58% of customers with known IDs made repeat purchases.
+- **Product performance:** Regency Cake Stand 3 Tier was among the strongest physical products by revenue.
+- **Weekly trends:** Thursday recorded the highest revenue among the weekdays represented in the dataset.
+
+## Tableau Dashboard Features
+
+The interactive dashboard includes:
+
+- Total Revenue KPI
+- Total Orders KPI
+- Known Customers KPI
+- Total Countries KPI
+- Monthly Revenue Performance
+- Revenue by Country
+- Top 10 Products by Revenue
+- Top 10 Customers by Revenue
+
+**[Explore the Live Dashboard](https://public.tableau.com/app/profile/pavan.kalyan.poloju/viz/E-CommerceSalesPerformanceDashboard_17939119335790/E-CommerceSalesDashboard)**
+
+## Project Structure
 
 ```text
 ecommerce-sales-analysis/
+│
 ├── data/
-│   ├── raw/                  # Original workbook (not committed)
-│   └── processed/            # Generated CSVs (not committed by default)
-├── powerbi/
-│   ├── dax_measures.md
-│   └── dashboard_guide.md
+│   ├── raw/
+│   └── processed/
+│       ├── clean_sales.csv
+│       ├── monthly_sales.csv
+│       ├── product_performance.csv
+│       ├── country_performance.csv
+│       ├── customer_performance.csv
+│       ├── data_quality_summary.csv
+│       └── project_kpi_summary.csv
+│
+├── reports/
+│   └── Generated analysis charts
+│
 ├── sql/
 │   ├── 01_create_tables.sql
 │   ├── 02_analysis_queries.sql
 │   └── 03_data_quality_checks.sql
+│
 ├── src/
 │   ├── download_data.py
-│   └── analysis.py
-├── reports/                  # Generated charts and summary tables
-├── .gitignore
+│   ├── analysis.py
+│   ├── load_database.py
+│   ├── test_sql.py
+│   └── run_sql_analysis.py
+│
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## Run the project
+## How to Run the Project
 
-### 1. Create an environment and install dependencies
+### 1. Clone the repository
 
 ```bash
-python -m venv .venv
-# macOS / Linux
-source .venv/bin/activate
-# Windows PowerShell
-# .venv\Scripts\Activate.ps1
-
-python -m pip install -r requirements.txt
+git clone https://github.com/pk090-lab/ecommerce-sales-analysis.git
+cd ecommerce-sales-analysis
 ```
 
-### 2. Download the data
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download the dataset
 
 ```bash
 python src/download_data.py
 ```
 
-Or manually download the workbook from UCI and save it as:
-
-```text
-data/raw/Online Retail.xlsx
-```
-
-### 3. Clean and analyze with Python
+### 4. Run Python data analysis
 
 ```bash
 python src/analysis.py
 ```
 
-The script:
-- Loads the Excel workbook.
-- Standardizes column names and types.
-- Flags cancelled invoices (invoice numbers beginning with `C`).
-- Separates positive sales from returns/cancellations.
-- Excludes invalid non-positive quantities and prices from the sales fact table.
-- Preserves missing customer IDs as unknown rather than inventing IDs.
-- Creates a clean transaction CSV, a customer summary, a product summary, and chart images.
-
-Generated files appear in `data/processed/` and `reports/`.
-
-### 4. Load data into SQLite and run SQL
-
-From the project root:
+### 5. Create the SQLite database
 
 ```bash
-sqlite3 ecommerce.db < sql/01_create_tables.sql
+python src/load_database.py
 ```
 
-Then import the generated `clean_sales.csv` into the `sales` table. One simple Python option is:
+### 6. Execute SQL analysis
 
 ```bash
-python -c "import pandas as pd, sqlite3; df=pd.read_csv('data/processed/clean_sales.csv'); con=sqlite3.connect('ecommerce.db'); df.to_sql('sales', con, if_exists='replace', index=False); con.close()"
+python src/run_sql_analysis.py
 ```
 
-Run the analysis queries:
+## Data Quality Considerations
 
-```bash
-sqlite3 ecommerce.db < sql/02_analysis_queries.sql
-```
+- The original dataset contains 541,909 records; 530,104 valid sales records were retained for analysis.
+- A total of 132,220 retained sales records have missing Customer IDs. These are excluded from customer-specific metrics.
+- December 2011 is a partial month because the dataset ends on December 9, 2011.
+- Postage and manual-charge entries are included in product revenue, so product-level results should be interpreted accordingly.
+- An unusually large Paper Craft transaction was identified and should be investigated before drawing conclusions about typical product demand.
 
-Or open `ecommerce.db` with DB Browser for SQLite and execute the SQL files.
+## Future Improvements
 
-### 5. Build the Power BI dashboard
+- Develop customer segmentation using RFM analysis.
+- Perform cohort-based customer retention analysis.
+- Build sales forecasting models.
+- Investigate unusual transactions and outliers.
+- Add automated data quality reporting.
 
-1. Open Power BI Desktop.
-2. Select **Get Data → Text/CSV** and load `data/processed/clean_sales.csv`.
-3. Set `InvoiceDate` to Date/Time and numeric columns to appropriate numeric types.
-4. Create the measures in `powerbi/dax_measures.md`.
-5. Follow the report layout and visual instructions in `powerbi/dashboard_guide.md`.
-6. Save the report as `powerbi/Ecommerce_Sales_Analysis.pbix`.
+## Author
 
-Power BI Desktop is available from [Microsoft](https://powerbi.microsoft.com/desktop/).
+**Pavan Kalyan Poloju**
 
-## Business questions and analysis
+Data Analyst | Python | SQL | Tableau | Power BI
 
-1. What is total net sales revenue from valid positive sales lines?
-2. Which months have the highest revenue?
-3. Which products generate the most revenue?
-4. Which countries contribute the most revenue?
-5. How many unique customers purchased?
-6. What is average revenue per invoice?
-7. What share of customers made more than one purchase?
-8. How do order volume and average order value change over time?
+- [GitHub Repository](https://github.com/pk090-lab/ecommerce-sales-analysis)
+- [Tableau Public Portfolio](https://public.tableau.com/app/profile/pavan.kalyan.poloju)
 
-**Metric definitions**
-- Revenue: sum of `Quantity × UnitPrice` for valid positive sales lines.
-- Orders: distinct invoice numbers in the cleaned sales table.
-- Customers: distinct non-null customer IDs.
-- Average order value (AOV): revenue divided by distinct invoices.
-- Repeat customer: a known customer ID associated with more than one distinct invoice.
-- Returns/cancellations: excluded from the positive-sales fact table and summarized separately by the Python script where possible.
+---
 
-## Data-quality decisions and limitations
-
-- Invoice numbers beginning with `C` indicate cancellations/credit notes in this dataset; they are not counted as positive sales.
-- Positive sales rows require `Quantity > 0` and `UnitPrice > 0`.
-- Rows with missing `CustomerID` remain in sales totals but are excluded from customer-level metrics.
-- Revenue is a sales-line value, not accounting profit: product cost, shipping, tax, and payment fees are not supplied.
-- The dataset is historical and limited to one retailer. Findings should not be generalized to all e-commerce businesses.
-- The Python script creates an auditable row-level exclusion summary. Review it before publishing conclusions.
-
-## Suggested GitHub project description
-
-> End-to-end e-commerce analytics project using Python, SQL, and Power BI to clean transactional data, analyze sales and customer behavior, and build an interactive business performance dashboard.
-
-## Suggested resume bullet (replace placeholders with your actual results)
-
-> Analyzed **[N]+** e-commerce transaction records using Python, SQL, and Power BI; cleaned and validated sales data, developed KPI measures, and built an interactive dashboard highlighting revenue trends, top products, customer segments, and geographic performance.
-
-## Dataset citation
-
-Chen, D. (2015). *Online Retail* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5BW33
-
-## License and attribution
-
-The dataset is provided by the UCI Machine Learning Repository. Check the dataset page for the current license/terms and cite UCI when using it. The code in this portfolio repository is provided under the MIT License unless you choose another license; this does not change the dataset's terms.
+*This project was developed for educational and professional portfolio purposes using the publicly available UCI Online Retail dataset.*
