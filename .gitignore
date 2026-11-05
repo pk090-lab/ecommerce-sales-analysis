@@ -1,0 +1,31 @@
+
+# Python environment and cache
+.venv/
+__pycache__/
+*.py[cod]
+
+# macOS files
+.DS_Store
+
+# Original dataset
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated database
+*.db
+*.sqlite
+*.sqlite3
+
+# Keep processed analysis CSV files
+# (Do not ignore data/processed)
+
+# Keep generated report charts
+# (Do not ignore reports/)
+
+# Tableau temporary files
+.~*
+*.twbr
+*.tmp
+
+# Power BI files
+*.pbix

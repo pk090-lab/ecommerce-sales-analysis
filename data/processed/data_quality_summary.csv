@@ -1,0 +1,8 @@
+quality_check,row_count
+source_rows,541909
+cancelled_or_credit_note_rows,9288
+missing_customer_id_rows,135080
+invalid_invoice_date_rows,0
+invalid_quantity_or_price_rows,0
+nonpositive_quantity_rows,10624
+nonpositive_unit_price_rows,2517
